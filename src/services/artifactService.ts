@@ -1,7 +1,6 @@
 import type { Artifact, SubStat } from "../enums/types"
 import { ArtifactType } from "../enums/enums"
-
-const subStatTypes: readonly string[] = ['HP', 'HPP', 'ATK', 'ATKP', 'DEF', 'DEFP', 'CRITR', 'CRITD', 'ER', 'EM']
+import { subStatTypes, subStatValues } from "../enums/values"
 
 export function generateArtifact(set: string = "Gladiator's Triumphus") {
 
@@ -62,8 +61,28 @@ function chooseMainStat(possibleMainStats: string[]): string {
 
 function getSubstats(mainStat: string): SubStat[] {
 
-    const subStats: string[] = subStatTypes.filter((stat) => stat !== mainStat)
-    const stat = subStats[Math.floor(Math.random()*subStats.length)]
-    const result: SubStat[] = [{stat: stat, value: 0}]
+    const subAmount = Math.floor(Math.random() * 2) == 0 ? 3 : 4
+    
+    const result = []
+    const currentSubStats = []
+    let allowedSubStats = subStatTypes.filter((stat) => stat !== mainStat )
+    for (let i = 0; i < subAmount; i++) {
+        const selectedStat: string = allowedSubStats[Math.floor(Math.random() * allowedSubStats.length)]
+        const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
+        result.push({stat: selectedStat, value: value})
+
+        allowedSubStats = allowedSubStats.filter((stat) => stat !== selectedStat)
+
+    }
+
+
+    
+    
     return result;
 }
+
+// function getSubStatValue(subStat: string): SubStat {
+//     const stat = subStat
+//     value = subStatValues.subStat
+    
+// }

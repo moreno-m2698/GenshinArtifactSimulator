@@ -12,7 +12,7 @@ const artifact = ref()
 
 
 function rollArtifact() {
-    "Created new artifact"
+    console.log("Created new artifact")
     const newArtifact = generateArtifact();
     artifact.value = newArtifact
 
