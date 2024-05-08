@@ -46,9 +46,9 @@ function buildArtifact(artifactType: ArtifactType, set: string, possibleMainStat
 function chooseArtifactType(): ArtifactType {
 
     //Look for another way to reference enums instead of creating this new array.
-    const artifactEnums = [ArtifactType.Flower, ArtifactType.Plume, ArtifactType.Sands, ArtifactType.Goblet, ArtifactType.Circlet];
-    const randomIndex = Math.floor(Math.random() * artifactEnums.length)
-    return artifactEnums[randomIndex]
+    const artifactTypeList = [ArtifactType.Flower, ArtifactType.Plume, ArtifactType.Sands, ArtifactType.Goblet, ArtifactType.Circlet];
+    const randomIndex = Math.floor(Math.random() * artifactTypeList.length)
+    return artifactTypeList[randomIndex]
     
 }
 
@@ -67,6 +67,7 @@ function getSubstats(mainStat: string): SubStat[] {
     let allowedSubStats = subStatTypes.filter((stat) => stat !== mainStat)
 
     for (let i = 0; i < initialSubStatCount; i++) {
+
         const selectedStat: string = allowedSubStats[Math.floor(Math.random() * allowedSubStats.length)]
         const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
         result.push({stat: selectedStat, value: value})
