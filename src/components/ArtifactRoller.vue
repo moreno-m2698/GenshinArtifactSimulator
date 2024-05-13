@@ -9,13 +9,13 @@ import circlet from '../assets/img/circlet.webp'
 import { generateArtifact } from '../services/artifactService'
 
 const artifact = ref()
-
+const pressedOnce = ref(false)
 
 function rollArtifact() {
     console.log("Created new artifact")
     const newArtifact = generateArtifact();
     artifact.value = newArtifact
-
+    pressedOnce.value = true
 }
 
 
@@ -26,8 +26,8 @@ function rollArtifact() {
 
 <template>
     <h1>Test</h1>
-    <div>
-        <!-- <img :src='currentArtifact.src'/> -->
+    <div v-if="pressedOnce">
+        <img :src='artifact.src'/>
     </div>
     <p>Current Artifact: {{ artifact }}</p>
     <button @click="rollArtifact">Get Artifact</button>

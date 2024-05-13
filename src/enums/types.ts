@@ -4,7 +4,8 @@ export interface Artifact {
     set: string,
     type: ArtifactType,
     mainStat: string,
-    subStats: SubStat[]
+    subStats: SubStat[],
+    src?: string
 }
 
 export interface SubStat {
