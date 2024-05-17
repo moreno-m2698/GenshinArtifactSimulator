@@ -1,7 +1,7 @@
 //Referencing this article: https://apps.dtic.mil/sti/citations/ADA122046
 //https://apps.dtic.mil/sti/pdfs/ADA122046.pdf
 
-export class WeigthedArray {
+export class WeightedArray {
 
     private _items: string[]
     private _weights: number[]
