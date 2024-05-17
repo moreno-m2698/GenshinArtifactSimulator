@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { ArtifactType } from '../enums/enums'
-import flower from '../assets/img/flower.webp'
-import feather from '../assets/img/feather.webp'
-import timepiece from '../assets/img/timepiece.webp'
-import goblet from '../assets/img/goblet.webp'
-import circlet from '../assets/img/circlet.webp'
+import { ArtifactType } from '../types/enums'
 import { generateArtifact } from '../services/artifactService'
 
 const artifact = ref()

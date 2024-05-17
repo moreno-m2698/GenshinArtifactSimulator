@@ -1,57 +1,104 @@
-import type { Artifact, SubStat } from "../enums/types"
-import { ArtifactType } from "../enums/enums"
-import { subStatTypes, subStatValues } from "../enums/values"
+import type { Artifact, SubStat } from "../types/types"
+import { ArtifactType } from "../types/enums"
+import { subStatValues } from "../types/values"
+import { WeigthedArray } from "../types/weightedArray"
 import flower from "../assets/img/flower.webp"
 import feather from "../assets/img/feather.webp"
 import timepiece from "../assets/img/timepiece.webp"
 import goblet from "../assets/img/goblet.webp"
 import circlet from "../assets/img/circlet.webp"
 
+//I think I want to have my weighted arrays prebuilt instead of building each time we create an artifact
+//The references will be below:
+//========================================================================================================
+
+//MSWA: Main Stat Weighted Array
+
+const flowerMSWA = new WeigthedArray();
+flowerMSWA.add("HP", 1);
+
+const plumeMSWA = new WeigthedArray();
+plumeMSWA.add('ATK', 1);
+
+const sandsMSWA = new WeigthedArray();
+sandsMSWA.add('ATKP', 1);
+sandsMSWA.add('DEFP', 1);
+sandsMSWA.add('HPP', 1);
+sandsMSWA.add('EM', 1);
+sandsMSWA.add('ER', 1);
+
+const gobletMSWA = new WeigthedArray();
+gobletMSWA.add('ATKP', 1);
+gobletMSWA.add('DEFP', 1);
+gobletMSWA.add('HPP', 1);
+gobletMSWA.add('EM', 1);
+gobletMSWA.add('PHYSICAL', 1);
+gobletMSWA.add('ANEMO', 1);
+gobletMSWA.add('GEO', 1);
+gobletMSWA.add('DENDRO', 1);
+gobletMSWA.add('HYDRO', 1);
+gobletMSWA.add('PYRO', 1);
+gobletMSWA.add('CRYO', 1);
+gobletMSWA.add('ELECTRO', 1);
+
+
+const circletMSWA = new WeigthedArray();
+circletMSWA.add('ATKP', 1);
+circletMSWA.add('DEFP', 1);
+circletMSWA.add('HPP', 1);
+circletMSWA.add('CRITD', 1);
+circletMSWA.add('CRITR', 1);
+circletMSWA.add('EM', 1);
+
+
+
+//Service functions:
+//=====================================================================================
+
 
 export function generateArtifact(set: string = "Gladiator's Triumphus") {
 
     const type = chooseArtifactType();
-    let possibleMainStats: string[];
+    let MSWA: WeigthedArray;
     let src: string;
 
     switch (type) {
         case ArtifactType.Flower:
-            possibleMainStats = ['HP'];
+            MSWA = flowerMSWA;
             src = flower
-            
             break;
 
         case ArtifactType.Plume:
-            possibleMainStats = ['ATK'];
+            MSWA = plumeMSWA
             src = feather
             break;
 
         case ArtifactType.Sands:
-            possibleMainStats = ['ATKP', 'DEFP', 'HPP', 'EM', 'ER'];
+            MSWA = sandsMSWA
             src = timepiece
             break;
         
         case ArtifactType.Goblet:
-            possibleMainStats = ['ATKP', 'DEFP', 'HPP', 'EM', 'PHYSICAL', 'ANEMO', 'GEO', 'DENDRO', 'HYDRO', 'PYRO', 'CRYO', 'ELECTRO'];
+            MSWA = gobletMSWA
             src = goblet
             break;
             
         case ArtifactType.Circlet:
-            possibleMainStats = ['ATKP','DEFP', 'HPP', 'CRITD', 'CRITR', 'EM']
+            MSWA = circletMSWA
             src = circlet
             
     }   
 
-    const result = buildArtifact(type, set, possibleMainStats, src)
+    const result = buildArtifact(type, set, MSWA, src)
     return result;
 }
 
-function buildArtifact(artifactType: ArtifactType, set: string, possibleMainStats: string[], image: string): Artifact {
+function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeightedArray: WeigthedArray, image: string, level: number = 0): Artifact {
 
     
-    const mainStat = chooseMainStat(possibleMainStats);
-    const subStats = getSubstats(mainStat);
-    const result: Artifact = { set: set, type: artifactType, mainStat: mainStat, subStats: subStats, src: image }
+    const mainStat = MainStatWeightedArray.sample();
+    const subStats = getSubstats(mainStat!);
+    const result: Artifact = { set: set, type: artifactType, mainStat: mainStat!, subStats: subStats, src: image, level: level }
     return result;
 
 };
@@ -65,29 +112,37 @@ function chooseArtifactType(): ArtifactType {
     
 }
 
-//Don't worry about dry, will eventually make custom stats functions once we have a sample
-function chooseMainStat(possibleMainStats: string[]): string {
-
-    const randomIndex = Math.floor(Math.random()) * possibleMainStats.length
-    return possibleMainStats[randomIndex];
-};
-
 function getSubstats(mainStat: string): SubStat[] {
 
     const initialSubStatCount = Math.floor(Math.random() * 2) == 0 ? 3 : 4
     
+    //This is placed here since we will need to purge a new object whenever a new artifact is created
+    //Due to its frequency I might either have it preconstructed or think of an alternative method for storing the data
+    const subStatWeightedArray = new WeigthedArray();
+    subStatWeightedArray.add('HP', 1);
+    subStatWeightedArray.add('HPP', 1);
+    subStatWeightedArray.add('ATK', 1);
+    subStatWeightedArray.add('ATKP', 1);
+    subStatWeightedArray.add('DEF', 1);
+    subStatWeightedArray.add('DEFP', 1);
+    subStatWeightedArray.add('CRITR', 1);
+    subStatWeightedArray.add('CRITD', 1);
+    subStatWeightedArray.add('ER', 1);
+    subStatWeightedArray.add('EM', 1);
+
+    subStatWeightedArray.remove(mainStat)
+
     const result = []
-    let allowedSubStats = subStatTypes.filter((stat) => stat !== mainStat)
 
     for (let i = 0; i < initialSubStatCount; i++) {
 
-        const selectedStat: string = allowedSubStats[Math.floor(Math.random() * allowedSubStats.length)]
-        const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
+        const selectedStat: string | undefined = subStatWeightedArray.sample()
+        const value = subStatValues[selectedStat!][Math.floor(Math.random()*4)]
         result.push({stat: selectedStat, value: value})
-
-        allowedSubStats = allowedSubStats.filter((stat) => stat !== selectedStat)
+        subStatWeightedArray.remove(selectedStat!)
 
     }
 
     return result;
 }
+

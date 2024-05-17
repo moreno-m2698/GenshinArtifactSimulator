@@ -1,4 +1,3 @@
-export const subStatTypes: readonly string[] = ['HP', 'HPP', 'ATK', 'ATKP', 'DEF', 'DEFP', 'CRITR', 'CRITD', 'ER', 'EM']
 
 interface SubStatValuesInter {
     [key: string]: number[]

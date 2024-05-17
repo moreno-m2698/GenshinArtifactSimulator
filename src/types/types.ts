@@ -5,7 +5,8 @@ export interface Artifact {
     type: ArtifactType,
     mainStat: string,
     subStats: SubStat[],
-    src?: string
+    src?: string,
+    level: number
 }
 
 export interface SubStat {
