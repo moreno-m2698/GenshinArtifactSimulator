@@ -97,8 +97,8 @@ function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeighted
 
     
     const mainStat = MainStatWeightedArray.sample();
-    const subStats = getSubstats(mainStat!);
-    const result: Artifact = { set: set, type: artifactType, mainStat: mainStat!, subStats: subStats, src: image, level: level }
+    const subStats = getSubstats(mainStat);
+    const result: Artifact = { set: set, type: artifactType, mainStat: mainStat, subStats: subStats, src: image, level: level }
     return result;
 
 };
@@ -137,9 +137,9 @@ function getSubstats(mainStat: string): SubStat[] {
     for (let i = 0; i < initialSubStatCount; i++) {
 
         const selectedStat: string | undefined = subStatWeightedArray.sample()
-        const value = subStatValues[selectedStat!][Math.floor(Math.random()*4)]
+        const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
         result.push({stat: selectedStat, value: value})
-        subStatWeightedArray.remove(selectedStat!)
+        subStatWeightedArray.remove(selectedStat)
 
     }
 

@@ -3,50 +3,63 @@
 
 export class WeigthedArray {
 
-    items: string[]
-    weights: number[]
-    totalWeigth: number
+    private _items: string[]
+    private _weights: number[]
+    private _totalWeigth: number
 
     constructor() {
-        this.items = [];
-        this.weights = [];
-        this.totalWeigth = 0
+        this._items = [];
+        this._weights = [];
+        this._totalWeigth = 0
     }
 
-    add(item: string, weight: number) {
-        this.items.push(item);
-        this.weights.push(weight);
-        this.totalWeigth += weight
+    public get items() {
+        return this._items;
+    }
+    
+    public get weights() {
+        return this._weights;
     }
 
-    remove(item: string) {
+    public get totalWeight() {
+        return this._totalWeigth
+    }
+
+
+    public add(item: string, weight: number) {
+        this._items.push(item);
+        this._weights.push(weight);
+        this._totalWeigth += weight
+    }
+
+    public remove(item: string) {
 
         //Values is -1 if item is not within this.items
-        const index = this.items.findIndex((element) => element === item)
+        const index = this._items.findIndex((element) => element === item)
 
         if ( index !== -1 ) {
-            const removedWeight = this.weights[index]
-            this.items.splice(index, 1)
-            this.weights.splice(index, 1)
-            this.totalWeigth -= removedWeight
+            const removedWeight = this._weights[index]
+            this._items.splice(index, 1)
+            this._weights.splice(index, 1)
+            this._totalWeigth -= removedWeight
         }
-        
+
     }
 
-    sample(): string | undefined {
-        if (this.items.length === 0) return undefined
+    public sample(): string {
 
-        const randomValue = Math.random() * this.totalWeigth;
+        const randomValue = Math.random() * this._totalWeigth;
         let cumulativeWeight = 0;
 
-        for ( let i = 0; i < this.items.length; i++ ) {
-            cumulativeWeight += this.weights[i];
+        for ( let i = 0; i < this._items.length; i++ ) {
+            cumulativeWeight += this._weights[i];
             if (randomValue < cumulativeWeight) {
-                return this.items[i]
+                return this._items[i]
             }
 
         }
 
+        return this._items[this._items.length - 1]
     }
 
 }
