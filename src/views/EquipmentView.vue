@@ -1,14 +1,34 @@
-<script setup lang="ts">
-// import TheWelcome from '../components/TheWelcome.vue'
+<template>
+  <div id="app">
+    <ArtifactRoller @artifact-created="addArtifact" />
+    <ArtifactInventory :artifacts="artifacts" />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 import ArtifactRoller from '../components/ArtifactRoller.vue';
 import ArtifactInventory from '../components/ArtifactInventory.vue';
-</script>
+import type { Artifact } from '@/types/types';
 
-<template>
-  <main>
-    <h1>Equipment View</h1>
-    <ArtifactRoller />
-    <ArtifactInventory />
-    <!-- <TheWelcome /> -->
-  </main>
-</template>
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    ArtifactRoller,
+    ArtifactInventory
+  },
+  setup() {
+    const artifacts = ref<Artifact[]>([]);
+
+    const addArtifact = (artifact: Artifact) => {
+      artifacts.value.push(artifact);
+    };
+
+    return {
+      artifacts,
+      addArtifact
+    };
+  }
+});
+</script>

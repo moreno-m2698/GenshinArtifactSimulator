@@ -1,30 +1,37 @@
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-import { ArtifactType } from '../types/enums'
-import { generateArtifact } from '../services/artifactService'
-
-const artifact = ref()
-const pressedOnce = ref(false)
-
-function rollArtifact() {
-    console.log("Created new artifact")
-    const newArtifact = generateArtifact();
-    artifact.value = newArtifact
-    pressedOnce.value = true
-}
-
-
-//This implementation errors if the number rolled is the same
-
-
-</script>
-
 <template>
-    <h1>Test</h1>
-    <div v-if="pressedOnce">
-        <img :src='artifact.src'/>
+    <div>
+      <h2>Create an Artifact</h2>
+      <button @click="createArtifact">Create Artifact</button>
+      <div v-if="artifact">
+        <h3>Artifact Details:</h3>
+        <pre>{{ artifact }}</pre>
+        <img :src="artifact.src" alt="Artifact Image" />
+      </div>
     </div>
-    <p>Current Artifact: {{ artifact }}</p>
-    <button @click="rollArtifact">Get Artifact</button>
-    <p></p>
-</template>
+  </template>
+  
+  <script lang="ts">
+  import { defineComponent, ref } from 'vue';
+  import { generateArtifact } from '../services/artifactService';
+  import type { Artifact } from '@/types/types';
+  
+  export default defineComponent({
+    name: 'ArtifactRoller',
+    setup(props, { emit }) {
+      const artifact = ref<Artifact | null>(null);
+  
+      const createArtifact = () => {
+        artifact.value = generateArtifact();
+        if (artifact.value) {
+        emit('artifact-created', artifact.value);
+        }
+      };
+  
+      return {
+        artifact,
+        createArtifact
+      };
+    }
+  });
+  </script>
+  
