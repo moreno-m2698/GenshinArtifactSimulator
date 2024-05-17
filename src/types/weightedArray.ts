@@ -1,4 +1,7 @@
-//Referencing this article: https://apps.dtic.mil/sti/citations/ADA122046
+
+//These are resources for a different data strucutre and NOT a WeightedArray
+//Read them later
+//https://apps.dtic.mil/sti/citations/ADA122046
 //https://apps.dtic.mil/sti/pdfs/ADA122046.pdf
 
 export class WeightedArray {

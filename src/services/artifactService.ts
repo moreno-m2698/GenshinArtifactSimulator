@@ -131,11 +131,9 @@ function getSubstats(mainStat: string): SubStat[] {
     subStatWeightedArray.add('EM', 1);
 
     subStatWeightedArray.remove(mainStat)
-
     const result = []
 
     for (let i = 0; i < initialSubStatCount; i++) {
-
         const selectedStat: string = subStatWeightedArray.sample()
         const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
         result.push({stat: selectedStat, value: value})
