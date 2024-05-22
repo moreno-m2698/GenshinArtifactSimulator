@@ -4,9 +4,9 @@
 //https://apps.dtic.mil/sti/citations/ADA122046
 //https://apps.dtic.mil/sti/pdfs/ADA122046.pdf
 
-export class WeightedArray {
+export class WeightedArray<T> {
 
-    private _items: string[]
+    private _items: T[]
     private _weights: number[]
     private _totalWeigth: number
 
@@ -29,13 +29,13 @@ export class WeightedArray {
     }
 
 
-    public add(item: string, weight: number) {
+    public add(item: T, weight: number) {
         this._items.push(item);
         this._weights.push(weight);
         this._totalWeigth += weight
     }
 
-    public remove(item: string) {
+    public remove(item: T) {
 
         //Values is -1 if item is not within this.items
         const index = this._items.findIndex((element) => element === item)
@@ -49,7 +49,7 @@ export class WeightedArray {
 
     }
 
-    public sample(): string {
+    public sample(): T {
 
         const randomValue = Math.random() * this._totalWeigth;
         let cumulativeWeight = 0;

@@ -14,20 +14,20 @@ import circlet from "../assets/img/circlet.webp"
 
 //MSWA: Main Stat Weighted Array
 
-const flowerMSWA = new WeightedArray();
+const flowerMSWA = new WeightedArray<string>();
 flowerMSWA.add("HP", 1);
 
-const plumeMSWA = new WeightedArray();
+const plumeMSWA = new WeightedArray<string>();
 plumeMSWA.add('ATK', 1);
 
-const sandsMSWA = new WeightedArray();
+const sandsMSWA = new WeightedArray<string>();
 sandsMSWA.add('ATKP', 1);
 sandsMSWA.add('DEFP', 1);
 sandsMSWA.add('HPP', 1);
 sandsMSWA.add('EM', 1);
 sandsMSWA.add('ER', 1);
 
-const gobletMSWA = new WeightedArray();
+const gobletMSWA = new WeightedArray<string>();
 gobletMSWA.add('ATKP', 1);
 gobletMSWA.add('DEFP', 1);
 gobletMSWA.add('HPP', 1);
@@ -42,7 +42,7 @@ gobletMSWA.add('CRYO', 1);
 gobletMSWA.add('ELECTRO', 1);
 
 
-const circletMSWA = new WeightedArray();
+const circletMSWA = new WeightedArray<string>();
 circletMSWA.add('ATKP', 1);
 circletMSWA.add('DEFP', 1);
 circletMSWA.add('HPP', 1);
@@ -50,7 +50,12 @@ circletMSWA.add('CRITD', 1);
 circletMSWA.add('CRITR', 1);
 circletMSWA.add('EM', 1);
 
-
+const artifactTypeMSWA = new WeightedArray<ArtifactType>;
+artifactTypeMSWA.add(ArtifactType.Flower, 1);
+artifactTypeMSWA.add(ArtifactType.Plume, 1);
+artifactTypeMSWA.add(ArtifactType.Goblet, 1);
+artifactTypeMSWA.add(ArtifactType.Circlet, 1);
+artifactTypeMSWA.add(ArtifactType.Sands, 1);
 
 //Service functions:
 //=====================================================================================
@@ -58,8 +63,8 @@ circletMSWA.add('EM', 1);
 
 export function generateArtifact(set: string = "Gladiator's Triumphus") {
 
-    const type = chooseArtifactType();
-    let MSWA: WeightedArray;
+    const type = artifactTypeMSWA.sample();
+    let MSWA: WeightedArray<string>;
     let src: string;
 
     switch (type) {
@@ -93,7 +98,7 @@ export function generateArtifact(set: string = "Gladiator's Triumphus") {
     return result;
 }
 
-function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeightedArray: WeightedArray, image: string, level: number = 0): Artifact {
+function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeightedArray: WeightedArray<string>, image: string, level: number = 0): Artifact {
 
     
     const mainStat = MainStatWeightedArray.sample();
@@ -103,22 +108,13 @@ function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeighted
 
 };
 
-function chooseArtifactType(): ArtifactType {
-
-    //Look for another way to reference enums instead of creating this new array.
-    const artifactTypeList = [ArtifactType.Flower, ArtifactType.Plume, ArtifactType.Sands, ArtifactType.Goblet, ArtifactType.Circlet];
-    const randomIndex = Math.floor(Math.random() * artifactTypeList.length)
-    return artifactTypeList[randomIndex]
-    
-}
-
 function getSubstats(mainStat: string): SubStat[] {
 
     const initialSubStatCount = Math.floor(Math.random() * 2) == 0 ? 3 : 4
     
     //This is placed here since we will need to purge a new object whenever a new artifact is created
     //Due to its frequency I might either have it preconstructed or think of an alternative method for storing the data
-    const subStatWeightedArray = new WeightedArray();
+    const subStatWeightedArray = new WeightedArray<string>();
     subStatWeightedArray.add('HP', 1);
     subStatWeightedArray.add('HPP', 1);
     subStatWeightedArray.add('ATK', 1);
