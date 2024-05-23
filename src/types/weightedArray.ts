@@ -66,3 +66,20 @@ export class WeightedArray<T> {
     }
 
 }
+
+export class SubStatWeightedArray extends WeightedArray<string> {
+    constructor () {
+        super()
+        this.add("HP", 1);
+        this.add('HPP', 1)
+        this.add('ATK', 1)
+        this.add('ATKP',1)
+        this.add('DEF', 1)
+        this.add('DEFP', 1)
+        this.add('CRITR',1)
+        this.add('CRITD', 1)
+        this.add('ER' , 1)
+        this.add('EM', 1)
+
+    }
+}

@@ -1,7 +1,7 @@
 import type { Artifact, SubStat } from "../types/types"
 import { ArtifactType } from "../types/enums"
 import { subStatValues } from "../types/values"
-import { WeightedArray } from "../types/weightedArray"
+import { SubStatWeightedArray, WeightedArray } from "../types/weightedArray"
 import flower from "../assets/img/flower.webp"
 import feather from "../assets/img/feather.webp"
 import timepiece from "../assets/img/timepiece.webp"
@@ -50,7 +50,7 @@ circletMSWA.add('CRITD', 1);
 circletMSWA.add('CRITR', 1);
 circletMSWA.add('EM', 1);
 
-const artifactTypeMSWA = new WeightedArray<ArtifactType>;
+const artifactTypeMSWA = new WeightedArray<ArtifactType>();
 artifactTypeMSWA.add(ArtifactType.Flower, 1);
 artifactTypeMSWA.add(ArtifactType.Plume, 1);
 artifactTypeMSWA.add(ArtifactType.Goblet, 1);
@@ -114,17 +114,19 @@ function getSubstats(mainStat: string): SubStat[] {
     
     //This is placed here since we will need to purge a new object whenever a new artifact is created
     //Due to its frequency I might either have it preconstructed or think of an alternative method for storing the data
-    const subStatWeightedArray = new WeightedArray<string>();
-    subStatWeightedArray.add('HP', 1);
-    subStatWeightedArray.add('HPP', 1);
-    subStatWeightedArray.add('ATK', 1);
-    subStatWeightedArray.add('ATKP', 1);
-    subStatWeightedArray.add('DEF', 1);
-    subStatWeightedArray.add('DEFP', 1);
-    subStatWeightedArray.add('CRITR', 1);
-    subStatWeightedArray.add('CRITD', 1);
-    subStatWeightedArray.add('ER', 1);
-    subStatWeightedArray.add('EM', 1);
+    // const subStatWeightedArray = new WeightedArray<string>();
+    // subStatWeightedArray.add('HP', 1);
+    // subStatWeightedArray.add('HPP', 1);
+    // subStatWeightedArray.add('ATK', 1);
+    // subStatWeightedArray.add('ATKP', 1);
+    // subStatWeightedArray.add('DEF', 1);
+    // subStatWeightedArray.add('DEFP', 1);
+    // subStatWeightedArray.add('CRITR', 1);
+    // subStatWeightedArray.add('CRITD', 1);
+    // subStatWeightedArray.add('ER', 1);
+    // subStatWeightedArray.add('EM', 1);
+
+    const subStatWeightedArray = new SubStatWeightedArray();
 
     subStatWeightedArray.remove(mainStat)
     const result = []
