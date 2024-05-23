@@ -1,35 +1,26 @@
 <template>
-    <div>
-      <h2>Artifact Inventory</h2>
-      <ul>
-        <li v-for="(artifact, index) in artifacts" :key="index" @click="selectArtifact(artifact)">
-          <img :src="artifact.src" alt="Artifact Image" />
-        </li>
-      </ul>
-    </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent, type PropType } from 'vue';
-  import { type Artifact } from '@/types/types';
-  
-  export default defineComponent({
-    name: 'ArtifactInventory',
-    props: {
-      artifacts: {
-        type: Array as PropType<Artifact[]>,
-        required: true
-      }
-    },
-    emits: ['artifact-selected'],
-    setup(props, { emit }) {
-      const selectArtifact = (artifact: Artifact) => {
-        emit('artifact-selected', artifact);
-      };
-  
-      return {
-        selectArtifact
-      };
-    }
-  });
-  </script>
+  <div>
+    <h2>Artifact Inventory</h2>
+    <ul>
+      <li v-for="(artifact, index) in artifacts" :key="index" @click="selectArtifact(artifact)">
+        <img :src="artifact.src" alt="Artifact Image" />
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { Artifact } from '@/types/types';
+
+const props = defineProps<{
+  artifacts: Artifact[];
+}>();
+
+const emit = defineEmits<{
+  (e: 'artifact-selected', artifact: Artifact): void;
+}>();
+
+const selectArtifact = (artifact: Artifact) => {
+  emit('artifact-selected', artifact);
+};
+</script>
