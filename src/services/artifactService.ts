@@ -111,21 +111,6 @@ function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeighted
 function getSubstats(mainStat: string): SubStat[] {
 
     const initialSubStatCount = Math.floor(Math.random() * 2) == 0 ? 3 : 4
-    
-    //This is placed here since we will need to purge a new object whenever a new artifact is created
-    //Due to its frequency I might either have it preconstructed or think of an alternative method for storing the data
-    // const subStatWeightedArray = new WeightedArray<string>();
-    // subStatWeightedArray.add('HP', 1);
-    // subStatWeightedArray.add('HPP', 1);
-    // subStatWeightedArray.add('ATK', 1);
-    // subStatWeightedArray.add('ATKP', 1);
-    // subStatWeightedArray.add('DEF', 1);
-    // subStatWeightedArray.add('DEFP', 1);
-    // subStatWeightedArray.add('CRITR', 1);
-    // subStatWeightedArray.add('CRITD', 1);
-    // subStatWeightedArray.add('ER', 1);
-    // subStatWeightedArray.add('EM', 1);
-
     const subStatWeightedArray = new SubStatWeightedArray();
 
     subStatWeightedArray.remove(mainStat)
