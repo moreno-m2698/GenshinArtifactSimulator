@@ -1,13 +1,12 @@
 import type { Artifact, SubStat } from "../types/types"
 import { ArtifactType } from "../types/enums"
 import { subStatValues } from "../types/values"
-import { SubStatWeightedArray, WeightedArray, WeightedArrayFactory } from "../types/weightedArray"
+import { WeightedArray, WeightedArrayFactory } from "../types/weightedArray"
 import flower from "../assets/img/flower.webp"
 import feather from "../assets/img/feather.webp"
 import timepiece from "../assets/img/timepiece.webp"
 import goblet from "../assets/img/goblet.webp"
 import circlet from "../assets/img/circlet.webp"
-
 
 const factory = new WeightedArrayFactory();
 
@@ -72,7 +71,7 @@ function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeighted
 function getSubstats(mainStat: string): SubStat[] {
 
     const initialSubStatCount = Math.floor(Math.random() * 2) == 0 ? 3 : 4
-    const subStatWeightedArray = new SubStatWeightedArray();
+    const subStatWeightedArray = factory.createSubStatWeightedArray()
 
     subStatWeightedArray.remove(mainStat)
     const result = []

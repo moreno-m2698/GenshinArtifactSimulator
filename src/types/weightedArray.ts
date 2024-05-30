@@ -67,7 +67,7 @@ export class WeightedArray<T> {
 
 }
 
-export class SubStatWeightedArray extends WeightedArray<string> {
+class SubStatWeightedArray extends WeightedArray<string> {
     constructor () {
         super();
         this.add("HP", 1);
@@ -176,4 +176,7 @@ export class WeightedArrayFactory {
         return new CircletWeightedArray();
     }
 
+    public createSubStatWeightedArray(): WeightedArray<string> {
+        return new SubStatWeightedArray();
+    }
 }
