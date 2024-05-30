@@ -1,54 +1,15 @@
 import type { Artifact, SubStat } from "../types/types"
 import { ArtifactType } from "../types/enums"
 import { subStatValues } from "../types/values"
-import { SubStatWeightedArray, WeightedArray } from "../types/weightedArray"
+import { SubStatWeightedArray, WeightedArray, WeightedArrayFactory } from "../types/weightedArray"
 import flower from "../assets/img/flower.webp"
 import feather from "../assets/img/feather.webp"
 import timepiece from "../assets/img/timepiece.webp"
 import goblet from "../assets/img/goblet.webp"
 import circlet from "../assets/img/circlet.webp"
 
-//I think I want to have my weighted arrays prebuilt instead of building each time we create an artifact
-//The references will be below:
-//========================================================================================================
 
-//MSWA: Main Stat Weighted Array
-
-const flowerMSWA = new WeightedArray<string>();
-flowerMSWA.add("HP", 1);
-
-const plumeMSWA = new WeightedArray<string>();
-plumeMSWA.add('ATK', 1);
-
-const sandsMSWA = new WeightedArray<string>();
-sandsMSWA.add('ATKP', 1);
-sandsMSWA.add('DEFP', 1);
-sandsMSWA.add('HPP', 1);
-sandsMSWA.add('EM', 1);
-sandsMSWA.add('ER', 1);
-
-const gobletMSWA = new WeightedArray<string>();
-gobletMSWA.add('ATKP', 1);
-gobletMSWA.add('DEFP', 1);
-gobletMSWA.add('HPP', 1);
-gobletMSWA.add('EM', 1);
-gobletMSWA.add('PHYSICAL', 1);
-gobletMSWA.add('ANEMO', 1);
-gobletMSWA.add('GEO', 1);
-gobletMSWA.add('DENDRO', 1);
-gobletMSWA.add('HYDRO', 1);
-gobletMSWA.add('PYRO', 1);
-gobletMSWA.add('CRYO', 1);
-gobletMSWA.add('ELECTRO', 1);
-
-
-const circletMSWA = new WeightedArray<string>();
-circletMSWA.add('ATKP', 1);
-circletMSWA.add('DEFP', 1);
-circletMSWA.add('HPP', 1);
-circletMSWA.add('CRITD', 1);
-circletMSWA.add('CRITR', 1);
-circletMSWA.add('EM', 1);
+const factory = new WeightedArrayFactory();
 
 const artifactTypeMSWA = new WeightedArray<ArtifactType>();
 artifactTypeMSWA.add(ArtifactType.Flower, 1);
@@ -69,27 +30,27 @@ export function generateArtifact(set: string = "Gladiator's Triumphus") {
 
     switch (type) {
         case ArtifactType.Flower:
-            MSWA = flowerMSWA;
+            MSWA = factory.createFlowerWeightedArray();
             src = flower
             break;
 
         case ArtifactType.Plume:
-            MSWA = plumeMSWA
+            MSWA = factory.createPlumeWeightedArray();
             src = feather
             break;
 
         case ArtifactType.Sands:
-            MSWA = sandsMSWA
+            MSWA = factory.createTimepieceWeightedArray();
             src = timepiece
             break;
         
         case ArtifactType.Goblet:
-            MSWA = gobletMSWA
+            MSWA = factory.createGolbletWeightedArray();
             src = goblet
             break;
             
         case ArtifactType.Circlet:
-            MSWA = circletMSWA
+            MSWA = factory.createCircletWeightedArray();
             src = circlet
             
     }   
@@ -121,7 +82,6 @@ function getSubstats(mainStat: string): SubStat[] {
         const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
         result.push({stat: selectedStat, value: value})
         subStatWeightedArray.remove(selectedStat)
-
     }
 
     return result;
