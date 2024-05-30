@@ -67,15 +67,6 @@ export class WeightedArray<T> {
 
 }
 
-class DomainWeightedArray extends WeightedArray<string> {
-
-    constructor (set1:string, set2:string) {
-        super();
-        this.add(set1, 1);
-        this.add(set2, 1);
-    }
-}
-
 class SubStatWeightedArray extends WeightedArray<string> {
     constructor () {
         super();
