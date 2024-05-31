@@ -1,10 +1,3 @@
-<template>
-  <div id="app">
-    <ArtifactRoller @artifact-created="addArtifact" />
-    <ArtifactInventory :artifacts="artifacts" @artifact-selected="selectArtifact" />
-    <ArtifactDetails :artifact="selectedArtifact" />
-  </div>
-</template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -24,3 +17,11 @@ const selectArtifact = (artifact: Artifact) => {
   selectedArtifact.value = artifact;
 };
 </script>
+
+<template>
+  <div id="app">
+    <ArtifactRoller @artifact-created="addArtifact" />
+    <ArtifactInventory :artifacts="artifacts" @artifact-selected="selectArtifact" />
+    <ArtifactDetails :artifact="selectedArtifact" />
+  </div>
+</template>

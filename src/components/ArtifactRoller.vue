@@ -1,15 +1,3 @@
-<template>
-  <div>
-    <h2>Create an Artifact</h2>
-    <button @click="createArtifact">Create Artifact</button>
-    <div v-if="artifact">
-      <h3>Artifact Details:</h3>
-      <pre>{{ artifact }}</pre>
-      <img :src="artifact.src" alt="Artifact Image" />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import { generateArtifact } from '../services/artifactService';
@@ -28,3 +16,15 @@ const createArtifact = () => {
   }
 };
 </script>
+
+<template>
+  <div>
+    <h2>Create an Artifact</h2>
+    <button @click="createArtifact">Create Artifact</button>
+    <div v-if="artifact">
+      <h3>Artifact Details:</h3>
+      <pre>{{ artifact }}</pre>
+      <img :src="artifact.src" alt="Artifact Image" />
+    </div>
+  </div>
+</template>
