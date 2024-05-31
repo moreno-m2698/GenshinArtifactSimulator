@@ -148,7 +148,7 @@ class ArtifactTypeWeightedArray extends WeightedArray<ArtifactType> {
     }
 }
 
-class DomainSetWeigtedArray extends WeightedArray<string> {
+export class DomainSetWeigtedArray extends WeightedArray<string> {
     constructor (domain: Domain) {
         super();
         for (let i = 0; i<domain.sets.length, i++;) {
