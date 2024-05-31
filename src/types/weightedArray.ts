@@ -28,7 +28,6 @@ export class WeightedArray<T> {
         return this._totalWeigth
     }
 
-
     public add(item: T, weight: number) {
         this._items.push(item);
         this._weights.push(weight);
@@ -179,4 +178,9 @@ export class WeightedArrayFactory {
     public createSubStatWeightedArray(): WeightedArray<string> {
         return new SubStatWeightedArray();
     }
+
+    public createArtifactTypeWeightedArray(): WeightedArray<ArtifactType> {
+        return new ArtifactTypeWeightedArray();
+    }
+
 }

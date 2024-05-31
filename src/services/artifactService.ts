@@ -1,7 +1,7 @@
-import type { Artifact, SubStat } from "../types/types"
+import { type Artifact, type SubStat } from "../types/types"
 import { ArtifactType } from "../types/enums"
 import { subStatValues } from "../types/values"
-import { WeightedArray, WeightedArrayFactory } from "../types/weightedArray"
+import { type WeightedArray, WeightedArrayFactory } from "../types/weightedArray"
 import flower from "../assets/img/flower.webp"
 import feather from "../assets/img/feather.webp"
 import timepiece from "../assets/img/timepiece.webp"
@@ -10,20 +10,11 @@ import circlet from "../assets/img/circlet.webp"
 
 const factory = new WeightedArrayFactory();
 
-const artifactTypeMSWA = new WeightedArray<ArtifactType>();
-artifactTypeMSWA.add(ArtifactType.Flower, 1);
-artifactTypeMSWA.add(ArtifactType.Plume, 1);
-artifactTypeMSWA.add(ArtifactType.Goblet, 1);
-artifactTypeMSWA.add(ArtifactType.Circlet, 1);
-artifactTypeMSWA.add(ArtifactType.Sands, 1);
-
-//Service functions:
-//=====================================================================================
-
-
 export function generateArtifact(set: string = "Gladiator's Triumphus") {
 
-    const type = artifactTypeMSWA.sample();
+
+    const artifactsWeightedArray = factory.createArtifactTypeWeightedArray();
+    const type = artifactsWeightedArray.sample();
     let MSWA: WeightedArray<string>;
     let src: string;
 
