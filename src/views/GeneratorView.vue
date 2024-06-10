@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import ArtifactRoller from '../components/ArtifactRoller.vue';
 import ArtifactInventory from '../components/ArtifactInventory.vue';
 import ArtifactDetails from '../components/ArtifactDetails.vue';
+import DomainForm from '../components/DomainForm/DomainForm.vue';
 import type { Artifact } from '@/types/types';
 
 const artifacts = ref<Artifact[]>([]);
@@ -23,5 +24,6 @@ const selectArtifact = (artifact: Artifact) => {
     <ArtifactRoller @artifact-created="addArtifact" />
     <ArtifactInventory :artifacts="artifacts" @artifact-selected="selectArtifact" />
     <ArtifactDetails :artifact="selectedArtifact" />
+    <DomainForm />
   </div>
 </template>
