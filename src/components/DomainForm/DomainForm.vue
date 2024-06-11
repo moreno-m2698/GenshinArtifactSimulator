@@ -1,12 +1,26 @@
 <script setup lang="ts">
-import { domains } from "../../types/domain.js"
-import DomainRadio from "./DomainRadio.vue";
-console.log(domains)
+    const model = defineModel()
 
+    const submit = (e: Event) => {
+        console.log(e.target.value)
+    }
 </script>
 
+<!-- We can pass this form into the artifact roller -->
+
 <template>
-    <form>
-        <DomainRadio v-for="(domain, index) in domains" :key="index" :domain="domain" :index="index"/>
+    <form> 
+       <label 
+            v-for="(field, index) in model" 
+            :key="index"
+        >
+            <input 
+                :type='field.type' 
+                :value="index"
+                :name="field?.name"
+                @change="submit"
+            />
+                {{ field.label }}
+        </label>
     </form>
 </template>
