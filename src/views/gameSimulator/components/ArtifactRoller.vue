@@ -23,8 +23,8 @@ const createArtifact = () => {
     <button @click="createArtifact">Create Artifact</button>
     <div v-if="artifact">
       <h3>Artifact Details:</h3>
-      <pre>{{ artifact }}</pre>
-      <img :src="artifact.src" alt="Artifact Image" />
+      <!-- <pre>{{ artifact }}</pre>
+      <img :src="artifact.src" alt="Artifact Image" /> -->
     </div>
   </div>
 </template>

@@ -24,3 +24,7 @@ const selectArtifact = (artifact: Artifact) => {
     </ul>
   </div>
 </template>
+<!-- 
+interfaces are interactable
+
+context for contents -->
