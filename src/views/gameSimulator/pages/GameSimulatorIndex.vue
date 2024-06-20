@@ -4,7 +4,7 @@ import { ref, reactive } from 'vue';
 import ArtifactRoller from '../components/ArtifactRoller.vue';
 import ArtifactBag from '../components/ArtifactBag.vue';
 import ArtifactDetails from '../components/ArtifactDetails.vue';
-import DomainForm from '../components/DomainForm/DomainForm.vue';
+import DomainForm from '../components/DomainForm.vue';
 import type { Artifact } from '@/types/types';
 import { type Domain, domains } from '../../../types/domain'
 

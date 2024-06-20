@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { generateArtifact } from '../services/artifactService';
+import { generateArtifact } from '../../../services/artifactService';
 import type { Artifact } from '@/types/types';
 
 const artifact = ref<Artifact | null>(null);
