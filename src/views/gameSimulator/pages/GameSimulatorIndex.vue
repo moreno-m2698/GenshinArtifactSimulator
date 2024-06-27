@@ -31,7 +31,6 @@
     selectedArtifact.value = artifact;
   };
 </script>
-<!-- test -->
 <template>
   <div id="app">
     <ArtifactRoller @artifact-created="addArtifact" />
