@@ -2,9 +2,10 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import ArtifactRoller from '../components/ArtifactRoller.vue';
-  import ArtifactBag from '../components/ArtifactBag.vue';
-  import ArtifactDetails from '../components/ArtifactDetails.vue';
+  import ArtifactInventory from '../components/ArtifactInventory.vue';
+  import ArtifactFocus from '../components/ArtifactFocus.vue';
   import DomainForm from '../components/DomainForm.vue';
+  import ArtifactEquipment from '../components/ArtifactEquipment.vue'
   import type { Artifact } from '../../../utilities/types/artifactTypes';
   import { type Domain, domains } from '../../../utilities/types/domain'
 
@@ -34,8 +35,9 @@
 <template>
   <div id="app">
     <ArtifactRoller @artifact-created="addArtifact" />
-    <DomainForm v-model='domainFields'/>
-    <ArtifactBag :artifacts="artifacts" @artifact-selected="selectArtifact" />
-    <ArtifactDetails :artifact="selectedArtifact" />
+    <DomainForm v-model='domainFields'/>    
+    <ArtifactFocus :artifact="selectedArtifact" />
+    <ArtifactEquipment />
+    <ArtifactInventory :artifacts="artifacts" @artifact-selected="selectArtifact" />
   </div>
 </template>
