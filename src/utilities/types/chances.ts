@@ -1,4 +1,4 @@
-import { MainStats, Stats, SubStats, Types } from "./enums";
+import { MainStats, Stats, SubStats, Types } from "../types/enums";
 
 export const upgradeTiers = {
   [Stats.HPFlat]: [209, 239, 269, 299],

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Artifact } from '@/types/types';
+import type { Artifact } from '@/utilities/types/types';
 
 const props = defineProps<{
   artifacts: Artifact[];
@@ -24,6 +24,7 @@ const selectArtifact = (artifact: Artifact) => {
     </ul>
   </div>
 </template>
+
 <!-- 
 interfaces are interactable
 

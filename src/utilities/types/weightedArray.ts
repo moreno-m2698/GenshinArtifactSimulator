@@ -1,5 +1,5 @@
-import { ArtifactType } from "../types/enums"
-import { type Domain } from "../types/domain"
+import { ArtifactType } from "./enums"
+import { type Domain } from "./domain"
 //These are resources for a different data strucutre and NOT a WeightedArray
 //Read them later
 //https://apps.dtic.mil/sti/citations/ADA122046

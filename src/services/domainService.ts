@@ -1,5 +1,5 @@
-import type { Domain } from "@/types/domain";
-import { DomainSetWeigtedArray } from "@/types/weightedArray";
+import type { Domain } from "../utilities/types/domain";
+import { DomainSetWeigtedArray } from "../utilities/types/weightedArray";
 
 const domains: Map<number, Domain> = new Map()
 domains.set(1, {name: 'City of Gold', sets: [{name: 'Set1', weight: 1}, {name: 'Set2', weight: 2}]})
