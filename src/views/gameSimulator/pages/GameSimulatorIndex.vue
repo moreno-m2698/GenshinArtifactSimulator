@@ -4,22 +4,16 @@
   import ArtifactRoller from '../components/ArtifactRoller.vue';
   import ArtifactInventory from '../components/ArtifactInventory.vue';
   import ArtifactFocus from '../components/ArtifactFocus.vue';
-  import DomainForm from '../components/DomainForm.vue';
   import ArtifactEquipment from '../components/ArtifactEquipment.vue'
-  import type { Artifact } from '../../../utilities/types/artifactTypes';
-  import { type Domain, domains } from '../../../utilities/types/domain'
+  import { type Artifact, ArtifactType } from '../../../utilities/types/artifactTypes';
+
 
   const artifacts = ref<Artifact[]>([]);
   const selectedArtifact = ref<Artifact | null>(null);
 
-  const domainFields = ref(domains.map((domain) => {
-    return {
-      label: domain.name, 
-      value: false, 
-      type: "radio",
-      name: "domain" 
-    }
-  }));
+  const selectedType = ref<ArtifactType | null>(null)
+
+  
 
   // console.log(domainFields.value)
 
@@ -34,10 +28,9 @@
 
 <template>
   <div id="app">
-    <ArtifactRoller @artifact-created="addArtifact" />
-    <DomainForm v-model='domainFields'/>    
     <ArtifactFocus :artifact="selectedArtifact" />
     <ArtifactEquipment />
     <ArtifactInventory :artifacts="artifacts" @artifact-selected="selectArtifact" />
+    <ArtifactRoller @artifact-created="addArtifact" />
   </div>
 </template>

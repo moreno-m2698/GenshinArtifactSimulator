@@ -1,5 +1,3 @@
-import type { ArtifactType } from "./enums"
-
 export interface Artifact {
     set: string,
     type: ArtifactType,
@@ -13,3 +11,12 @@ export interface SubStat {
     stat: string,
     value: number
 }
+
+export enum ArtifactType{
+    Flower = "FLOWER",
+    Plume = "PLUME",
+    Sands = 'SANDS',
+    Goblet = 'GOBLET',
+    Circlet = 'CIRCLET'
+  }
+  

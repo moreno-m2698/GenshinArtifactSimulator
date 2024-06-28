@@ -1,5 +1,4 @@
-import { type Artifact, type SubStat } from "../utilities/types/artifactTypes"
-import { ArtifactType } from "../utilities/types/enums"
+import { type Artifact, type SubStat, ArtifactType } from "../utilities/types/artifactTypes"
 import { subStatValues } from "../utilities/types/values"
 import { type WeightedArray, WeightedArrayFactory } from "../utilities/types/weightedArray"
 import flower from "../assets/img/flower.webp"

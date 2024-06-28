@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Artifact } from '@/utilities/types/types';
+import type { Artifact } from '../utilities/types/types';
 
 const props = defineProps<{
   artifact: Artifact;
