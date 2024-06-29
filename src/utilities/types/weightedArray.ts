@@ -1,5 +1,5 @@
-import { ArtifactType } from "./enums"
 import { type Domain } from "./domain"
+import { ArtifactType } from "./artifactTypes"
 //These are resources for a different data strucutre and NOT a WeightedArray
 //Read them later
 //https://apps.dtic.mil/sti/citations/ADA122046
@@ -147,15 +147,6 @@ class ArtifactTypeWeightedArray extends WeightedArray<ArtifactType> {
         this.add(ArtifactType.Sands, 1);
     }
 }
-
-export class DomainSetWeigtedArray extends WeightedArray<string> {
-    constructor (domain: Domain) {
-        super();
-        for (let i = 0; i<domain.sets.length, i++;) {
-            this.add(domain.sets[i].name, domain.sets[i].weight)
-        }
-    }
-} 
 
 export class WeightedArrayFactory {
 

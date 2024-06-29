@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { generateArtifact } from '../../../services/artifactService';
-import type { Artifact } from '@/utilities/types/types';
+import type { Artifact } from '../../../utilities/types/artifactTypes'
 import { type Domain, domains } from '../../../utilities/types/domain'
-import DomainForm from './DomainForm.vue';
 
-const artifact = ref<Artifact | null>(null);
+const artifact = ref<Artifact|null>(null);
 
 const emit = defineEmits<{
   (e: 'artifact-created', artifact: Artifact): void;
@@ -17,22 +16,26 @@ const createArtifact = () => {
     emit('artifact-created', artifact.value);
   }
 };
-
-const domainFields = ref(domains.map((domain) => {
-    return {
-      label: domain.name, 
-      value: false, 
-      type: "radio",
-      name: "domain" 
-    }
-  }));
-
 </script>
 
 <template>
   <h1>Artifact Creator</h1>
-  <DomainForm v-model='domainFields'/>   
-  <div>
+  <form>
+    <select 
+      name="domain" 
+      id="domain-select"
+    > 
+      <option value="">
+        --Select--
+      </option>
+      <option
+        v-for="(domain, index) in domains"
+        value="index"
+      >
+        {{ domain.name }}
+      </option>
+    </select>
     <button @click="createArtifact">Create Artifact</button>
-  </div>
+    <input>
+  </form>
 </template>
