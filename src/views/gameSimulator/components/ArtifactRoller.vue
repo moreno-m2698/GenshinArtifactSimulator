@@ -16,7 +16,11 @@ const createArtifact = () => {
     emit('artifact-created', artifact.value);
   }
 };
+
+const selectOption = ref("0")
+
 </script>
+
 
 <template>
   <h1>Artifact Creator</h1>
@@ -24,18 +28,19 @@ const createArtifact = () => {
     <select 
       name="domain" 
       id="domain-select"
+      v-model="selectOption"
     > 
-      <option value="">
+      <option value="0">
         --Select--
       </option>
       <option
         v-for="(domain, index) in domains"
-        value="index"
+        :value="index + 1"
       >
         {{ domain.name }}
       </option>
     </select>
+    {{ selectOption }}
     <button @click="createArtifact">Create Artifact</button>
-    <input>
   </form>
 </template>
