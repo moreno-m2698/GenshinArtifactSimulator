@@ -17,8 +17,8 @@ const createArtifact = () => {
   }
 };
 
-const selectOption = ref("0")
-
+const selectOption = ref(0)
+const resinType = ref("fragile")
 </script>
 
 
@@ -28,7 +28,7 @@ const selectOption = ref("0")
     <select 
       name="domain" 
       id="domain-select"
-      v-model="selectOption"
+      v-model.number="selectOption"
     > 
       <option value="0">
         --Select--
@@ -41,6 +41,19 @@ const selectOption = ref("0")
       </option>
     </select>
     {{ selectOption }}
+    <label>
+      <input type="radio" v-model="resinType" value="fragile">
+      Fragile Resin
+    </label>
+    <label>
+      <input type="radio" v-model="resinType" value="condensed">
+      Condensed Resin
+    </label>
+    <br />
+    {{ resinType }}
     <button @click="createArtifact">Create Artifact</button>
+    <input
+      type="submit"
+    >
   </form>
 </template>
