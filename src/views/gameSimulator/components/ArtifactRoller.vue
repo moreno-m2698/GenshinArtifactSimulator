@@ -11,7 +11,7 @@ const emit = defineEmits<{
 }>();
 
 const createArtifact = () => {
-  artifact.value = generateArtifact();
+  artifact.value = generateArtifact(selectOption.value);
   if (artifact.value) {
     emit('artifact-created', artifact.value);
   }
@@ -24,7 +24,7 @@ const resinType = ref("fragile")
 
 <template>
   <h1>Artifact Creator</h1>
-  <form>
+  <form @submit.prevent>
     <select 
       name="domain" 
       id="domain-select"
@@ -52,8 +52,5 @@ const resinType = ref("fragile")
     <br />
     {{ resinType }}
     <button @click="createArtifact">Create Artifact</button>
-    <input
-      type="submit"
-    >
   </form>
 </template>

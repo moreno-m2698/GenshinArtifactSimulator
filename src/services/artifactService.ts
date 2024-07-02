@@ -1,6 +1,7 @@
 import { type Artifact, type SubStat, ArtifactType } from "../utilities/types/artifactTypes"
 import { subStatValues } from "../utilities/types/values"
 import { type WeightedArray, WeightedArrayFactory } from "../utilities/types/weightedArray"
+import { domains } from "../utilities/types/domain"
 import flower from "../assets/img/flower.webp"
 import feather from "../assets/img/feather.webp"
 import timepiece from "../assets/img/timepiece.webp"
@@ -9,9 +10,9 @@ import circlet from "../assets/img/circlet.webp"
 
 const factory = new WeightedArrayFactory();
 
-export function generateArtifact(set: string = "Gladiator's Triumphus") {
+export function generateArtifact(domainIndex: number = 0) {
 
-
+    console.log("This is the domain index: " + (domainIndex - 1).toString())
     const artifactsWeightedArray = factory.createArtifactTypeWeightedArray();
     const type = artifactsWeightedArray.sample();
     let MSWA: WeightedArray<string>;
@@ -44,13 +45,13 @@ export function generateArtifact(set: string = "Gladiator's Triumphus") {
             
     }   
 
-    const result = buildArtifact(type, set, MSWA, src)
+    const result = buildArtifact(type, domainIndex, MSWA, src)
     return result;
 }
 
-function buildArtifact(artifactType: ArtifactType, set: string, MainStatWeightedArray: WeightedArray<string>, image: string, level: number = 0): Artifact {
+function buildArtifact(artifactType: ArtifactType, domainIndex: number, MainStatWeightedArray: WeightedArray<string>, image: string, level: number = 0): Artifact {
 
-    
+    const set = "replace me"
     const mainStat = MainStatWeightedArray.sample();
     const subStats = getSubstats(mainStat);
     const result: Artifact = { set: set, type: artifactType, mainStat: mainStat, subStats: subStats, src: image, level: level }
