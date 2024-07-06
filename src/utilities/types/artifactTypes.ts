@@ -1,16 +1,20 @@
 export interface Artifact {
     set: string,
     type: ArtifactType,
-    mainStat: string,
-    subStats: SubStat[],
+    stat: Stats
     src?: string,
-    level: number
 }
 
-export interface SubStat {
+export interface Stats {
+    mainStat: Stat,
+    subStats: Stat[],
+    level: number
+}
+export interface Stat {
     stat: string,
     value: number
 }
+
 
 export enum ArtifactType{
     Flower = "FLOWER",
