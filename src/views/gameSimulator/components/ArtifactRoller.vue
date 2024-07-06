@@ -19,6 +19,7 @@ const createArtifact = () => {
 
 const selectOption = ref(0)
 const resinType = ref("fragile")
+const trialRuns = ref(1)
 </script>
 
 
@@ -41,16 +42,34 @@ const resinType = ref("fragile")
       </option>
     </select>
     {{ selectOption }}
+    <br/>
     <label>
-      <input type="radio" v-model="resinType" value="fragile">
       Fragile Resin
+      <input type="radio" v-model="resinType" value="fragile">
     </label>
+    <br/>
     <label>
-      <input type="radio" v-model="resinType" value="condensed">
       Condensed Resin
+      <input type="radio" v-model="resinType" value="condensed">
     </label>
-    <br />
-    {{ resinType }}
-    <button @click="createArtifact">Create Artifact</button>
+    <br />    
+    <p>Resin type: {{ resinType }}</p>
+    <label>
+      Trial Runs
+      <input 
+        type="range" 
+        id="amount" 
+        name="Trial attempts"
+        min="1"
+        max="5"
+        step="1"
+        value="1"
+        v-model.number="trialRuns"
+      >
+    </label>
+    <br/>
+    <p>Amount of runs: {{ trialRuns }}</p>
+    <!-- When a single button is in a form it default acts like a submit input -->
+    <button @click="createArtifact">Create Artifact</button> 
   </form>
 </template>
