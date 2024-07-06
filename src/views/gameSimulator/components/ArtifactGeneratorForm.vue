@@ -25,7 +25,9 @@ const trialRuns = ref(1)
 
 <template>
   <h1>Artifact Creator</h1>
-  <form @submit.prevent>
+  <form 
+    @submit.prevent
+  >
     <select 
       name="domain" 
       id="domain-select"

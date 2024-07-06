@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue';
-  import ArtifactRoller from '../components/ArtifactRoller.vue';
+  import ArtifactGeneratorForm from '../components/ArtifactGeneratorForm.vue';
   import ArtifactInventory from '../components/ArtifactInventory.vue';
   import ArtifactFocus from '../components/ArtifactFocus.vue';
   import ArtifactEquipment from '../components/ArtifactEquipment.vue'
@@ -31,6 +31,6 @@
     <ArtifactFocus :artifact="selectedArtifact" />
     <ArtifactEquipment />
     <ArtifactInventory :artifacts="artifacts" @artifact-selected="selectArtifact" />
-    <ArtifactRoller @artifact-created="addArtifact" />
+    <ArtifactGeneratorForm @artifact-created="addArtifact" />
   </div>
 </template>

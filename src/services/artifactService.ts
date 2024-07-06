@@ -77,3 +77,6 @@ function getSubstats(mainStat: string): SubStat[] {
     return result;
 }
 
+export const retrieveSprite = ( spriteWidth: number, spriteHeight: number) => {
+
+}
