@@ -7,3 +7,5 @@ export const repeatFunction = <T>(f: Func<T>): (n: number) => (x: T) => T => (n:
     }
     return result
 }
+
+export const curryRepeat = 
