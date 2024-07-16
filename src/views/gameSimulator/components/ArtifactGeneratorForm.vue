@@ -11,9 +11,11 @@ const emit = defineEmits<{
 }>();
 
 const createArtifact = () => {
-  artifact.value = generateArtifact(selectOption.value);
-  if (artifact.value) {
-    emit('artifact-created', artifact.value);
+  for (let i = 0; i < trialRuns.value; i++) {
+    artifact.value = generateArtifact(selectOption.value);
+    if (artifact.value) {
+      emit('artifact-created', artifact.value);
+    }
   }
 };
 

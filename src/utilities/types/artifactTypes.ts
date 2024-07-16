@@ -1,8 +1,9 @@
 export interface Artifact {
     set: string,
     type: ArtifactType,
-    stat: Stats
-    src?: string,
+    stat: Stats,
+    level: number,
+    src?: string
 }
 
 export interface Stats {
