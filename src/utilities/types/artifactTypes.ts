@@ -2,7 +2,7 @@ export interface Artifact {
     set: string,
     type: ArtifactType,
     stats: Stats,
-    src?: ArtifactAsset
+    asset: ArtifactAsset
 }
 
 export interface Stats {

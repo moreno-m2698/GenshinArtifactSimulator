@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <div v-if="artifact">
     <h2>Artifact Details</h2>
-    <img :src="artifact.src" alt="Artifact Image" />
+    <img :src="artifact.asset.src" alt="Artifact Image" />
     <pre>{{ artifact }}</pre>
   </div>
 </template>

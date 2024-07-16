@@ -54,7 +54,7 @@ function buildArtifact(artifactType: ArtifactType, domainIndex: number, MainStat
     const set = "replace me"
     const mainStat: Stat = {name: MainStatWeightedArray.sample(), value: 0};
     const subStats = getSubstats(mainStat.name);
-    const result: Artifact = { set: set, type: artifactType, stats: {mainStat: mainStat, subStats: subStats, level: 0 }, src: image }
+    const result: Artifact = { set: set, type: artifactType, stats: {mainStat: mainStat, subStats: subStats, level: 0 }, asset: {x: 0, y: 0, src: image} }
     return result;
 
 };
