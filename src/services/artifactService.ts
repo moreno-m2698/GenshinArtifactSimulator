@@ -1,4 +1,4 @@
-import { type Artifact, type SubStat, ArtifactType } from "../utilities/types/artifactTypes"
+import { type Artifact, ArtifactType, type Stat, type Stats } from "../utilities/types/artifactTypes"
 import { subStatValues } from "../utilities/types/values"
 import { type WeightedArray, WeightedArrayFactory } from "../utilities/types/weightedArray"
 import { domains } from "../utilities/types/domain"
@@ -52,14 +52,14 @@ export function generateArtifact(domainIndex: number = 0) {
 function buildArtifact(artifactType: ArtifactType, domainIndex: number, MainStatWeightedArray: WeightedArray<string>, image: string, level: number = 0): Artifact {
 
     const set = "replace me"
-    const mainStat = MainStatWeightedArray.sample();
-    const subStats = getSubstats(mainStat);
-    const result: Artifact = { set: set, type: artifactType, mainStat: mainStat, subStats: subStats, src: image, level: level }
+    const mainStat: Stat = {name: MainStatWeightedArray.sample(), value: 0};
+    const subStats = getSubstats(mainStat.name);
+    const result: Artifact = { set: set, type: artifactType, stats: {mainStat: mainStat, subStats: subStats, level: 0 }, src: image }
     return result;
 
 };
 
-function getSubstats(mainStat: string): SubStat[] {
+function getSubstats(mainStat: string): Stat[] {
 
     const initialSubStatCount = Math.floor(Math.random() * 2) == 0 ? 3 : 4
     const subStatWeightedArray = factory.createSubStatWeightedArray()
@@ -70,7 +70,7 @@ function getSubstats(mainStat: string): SubStat[] {
     for (let i = 0; i < initialSubStatCount; i++) {
         const selectedStat: string = subStatWeightedArray.sample()
         const value = subStatValues[selectedStat][Math.floor(Math.random()*4)]
-        result.push({stat: selectedStat, value: value})
+        result.push({name: selectedStat, value: value})
         subStatWeightedArray.remove(selectedStat)
     }
 
