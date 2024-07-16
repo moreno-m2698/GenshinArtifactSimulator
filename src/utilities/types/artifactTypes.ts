@@ -2,7 +2,7 @@ export interface Artifact {
     set: string,
     type: ArtifactType,
     stats: Stats,
-    src?: string
+    src?: ArtifactAsset
 }
 
 export interface Stats {
@@ -13,6 +13,12 @@ export interface Stats {
 export interface Stat {
     name: string,
     value: number
+}
+
+export interface ArtifactAsset {
+    x: number,
+    y: number,
+    src?: string
 }
 
 
