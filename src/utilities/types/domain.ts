@@ -1,3 +1,5 @@
+import { type ArtifactAsset } from "./artifactTypes"
+
 export interface Domain {
     name: string
     sets: string[]
@@ -86,4 +88,25 @@ export const domains: Domain[] = [
     { name: domainNames[14], sets: [setNames[28], setNames[29]] },
     { name: domainNames[15], sets: [setNames[30], setNames[31]] },
     { name: domainNames[16], sets: [setNames[32], setNames[33]] }
+]
+
+//Line up the index's of the coords with the where they are on the sprite sheet:
+export const domainAssetData: ArtifactAsset[] = [
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0}
 ]
