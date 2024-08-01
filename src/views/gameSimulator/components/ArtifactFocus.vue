@@ -2,7 +2,7 @@
 import type { Artifact } from '../../../utilities/types/artifactTypes';
 
 const props = defineProps<{
-  artifact: Artifact;
+  artifact: Artifact | null;
 }>();
 </script>
 

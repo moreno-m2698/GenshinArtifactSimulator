@@ -24,7 +24,6 @@ const resinType = ref("fragile")
 const trialRuns = ref(1)
 </script>
 
-
 <template>
   <h1>Artifact Creator</h1>
   <form 
