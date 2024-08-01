@@ -7,15 +7,10 @@
   import ArtifactEquipment from '../components/ArtifactEquipment.vue'
   import { type Artifact, ArtifactType } from '../../../utilities/types/artifactTypes';
 
-
   const artifacts = ref<Artifact[]>([]);
   const selectedArtifact = ref<Artifact | null>(null);
-
   const selectedType = ref<ArtifactType | null>(null)
 
-  
-
-  // console.log(domainFields.value)
 
   const addArtifact = (artifact: Artifact) => {
     artifacts.value.push(artifact);
