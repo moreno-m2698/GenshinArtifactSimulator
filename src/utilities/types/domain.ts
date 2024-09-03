@@ -91,6 +91,7 @@ export const domains: Domain[] = [
 ]
 
 //Line up the index's of the coords with the where they are on the sprite sheet:
+//width and height controlled by css sheet
 export const domainAssetData: ArtifactAsset[] = [
     {x: 0, y: 0},
     {x: 0, y: 0},
